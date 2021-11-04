@@ -37,12 +37,18 @@ const gecode = (address, callback) => {
     } else if (res.body.features.length === 0) {
       callback("The search place not found", undefined);
     } else {
-      console.log(
-        res.body.features[0].center[0] + "\n" + res.body.features[0].center[1]
+      callback(
+        undefined,
+        res.body.features[0].center[0] +
+          "\n" +
+          res.body.features[0].center[1] +
+          "\n" +
+          res.body.features[0].place_name
       );
     }
   });
 };
 gecode("dungarpur", (error, data) => {
   console.log(error);
+  console.log(data);
 });
