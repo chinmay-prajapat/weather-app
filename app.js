@@ -45,6 +45,9 @@ const weatherForecast = require("./utils/weatherstackApi");
 // });
 // yargs.parse();
 const location = process.argv[2];
+if (!location) {
+  console.log("Please provide address");
+}
 gecode.gecode(location, (error, data) => {
   if (error) {
     console.log(error);
