@@ -10,7 +10,7 @@ const weatherForecast = (lat, long, callback) => {
     } else {
       callback(
         undefined,
-        `${res.body.current.weather_descriptions[0]}. It is currently ${res.body.current.temperature} degrees out. There is a ${res.body.current.precip}% chance of rain ${res.body.location.name}`
+        `${res.body.current.weather_descriptions[0]}. It is currently ${res.body.current.temperature} degrees out. There is a ${res.body.current.precip}% chance of rain.`
       );
     }
   });

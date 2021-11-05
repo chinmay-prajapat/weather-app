@@ -1,5 +1,6 @@
 // const request = require("request"); //Since request package has been deprecated
 const gecode = require("./utils/geocode");
+const yargs = require("yargs");
 const weatherForecast = require("./utils/weatherstackApi");
 
 // const geocodeURL =
@@ -16,12 +17,30 @@ const weatherForecast = require("./utils/weatherstackApi");
 //     console.log(latitude, longitude);
 //   }
 // });
-
-gecode.gecode("ahmedabad", (error, data) => {
-  console.log(error);
-  console.log(data);
-  weatherForecast(data.longitude, data.latitude, (error, data) => {
-    console.log(error);
-    console.log("data", data);
-  });
+yargs.command({
+  command: "location",
+  describe: "location",
+  builder: {
+    location: {
+      describe: "location",
+      demandOption: true,
+      type: "string",
+    },
+  },
+  handler(argv) {
+    gecode.gecode(argv.location, (error, data) => {
+      if (error) {
+        console.log(error);
+      }
+      weatherForecast(data.longitude, data.latitude, (error, weather) => {
+        if (data) {
+          console.log(data.place);
+          console.log(weather);
+        } else {
+          console.log(error);
+        }
+      });
+    });
+  },
 });
+yargs.parse();
