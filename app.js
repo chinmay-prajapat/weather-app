@@ -17,30 +17,44 @@ const weatherForecast = require("./utils/weatherstackApi");
 //     console.log(latitude, longitude);
 //   }
 // });
-yargs.command({
-  command: "location",
-  describe: "location",
-  builder: {
-    location: {
-      describe: "location",
-      demandOption: true,
-      type: "string",
-    },
-  },
-  handler(argv) {
-    gecode.gecode(argv.location, (error, data) => {
-      if (error) {
-        console.log(error);
-      }
-      weatherForecast(data.longitude, data.latitude, (error, weather) => {
-        if (data) {
-          console.log(data.place);
-          console.log(weather);
-        } else {
-          console.log(error);
-        }
-      });
-    });
-  },
+// yargs.command({
+//   command: "location",
+//   describe: "location",
+//   builder: {
+//     location: {
+//       describe: "location",
+//       demandOption: true,
+//       type: "string",
+//     },
+//   },
+//   handler(argv) {
+//     gecode.gecode(argv.location, (error, data) => {
+//       if (error) {
+//         console.log(error);
+//       }
+//       weatherForecast(data.longitude, data.latitude, (error, weather) => {
+//         if (data) {
+//           console.log(data.place);
+//           console.log(weather);
+//         } else {
+//           console.log(error);
+//         }
+//       });
+//     });
+//   },
+// });
+// yargs.parse();
+const location = process.argv[2];
+gecode.gecode(location, (error, data) => {
+  if (error) {
+    console.log(error);
+  }
+  weatherForecast(data.longitude, data.latitude, (error, weather) => {
+    if (data) {
+      console.log(data.place);
+      console.log(weather);
+    } else {
+      console.log(error);
+    }
+  });
 });
-yargs.parse();
