@@ -18,9 +18,10 @@ const weatherForecast = require("./utils/weatherstackApi");
 // });
 
 gecode.gecode("ahmedabad", (error, data) => {
+  console.log(error);
   console.log(data);
-});
-
-weatherForecast(23.03, 72.58, (error, data) => {
-  console.log("data", data);
+  weatherForecast(data.longitude, data.latitude, (error, data) => {
+    console.log(error);
+    console.log("data", data);
+  });
 });
