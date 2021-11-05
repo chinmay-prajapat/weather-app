@@ -1,6 +1,5 @@
 // const request = require("request"); //Since request package has been deprecated
 const gecode = require("./utils/geocode");
-const yargs = require("yargs");
 const weatherForecast = require("./utils/weatherstackApi");
 
 // const geocodeURL =
