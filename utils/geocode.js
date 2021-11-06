@@ -10,12 +10,13 @@ const gecode = (address, callback) => {
     } else if (res.body.features.length === 0) {
       callback("The search place not found", undefined);
     } else {
+      const { center, place_name } = res.body.features[0];
       callback(undefined, {
-        latitude: res.body.features[0].center[0],
+        latitude: center[0],
 
-        longitude: res.body.features[0].center[1],
+        longitude: center[1],
 
-        place: res.body.features[0].place_name,
+        place: place_name,
       });
     }
   });

@@ -51,7 +51,8 @@ gecode.gecode(location, (error, data) => {
   if (error) {
     console.log(error);
   }
-  weatherForecast(data.longitude, data.latitude, (error, weather) => {
+  const { longitude, latitude } = data;
+  weatherForecast(longitude, latitude, (error, weather) => {
     if (data) {
       console.log(data.place);
       console.log(weather);
